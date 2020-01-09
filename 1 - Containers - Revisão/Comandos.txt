@@ -1,0 +1,7 @@
+# Para construir o container à partir do arquivo Dockerfile:
+
+docker build -t tweet_app .
+
+# Para executar o container expondo a porta 80:
+
+docker container run --detach -p 80:80 tweet_app
