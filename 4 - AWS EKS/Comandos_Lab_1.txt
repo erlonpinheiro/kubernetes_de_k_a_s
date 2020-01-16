@@ -1,0 +1,29 @@
+# Passo 1 - Instalar o kubectl na instância Cloud9:
+
+sudo curl --silent --location -o /usr/local/bin/kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/kubectl
+sudo chmod +x /usr/local/bin/kubectl
+
+
+# Passo 2 - Instalar dependências necessárias:
+
+sudo yum -y install jq gettext bash-completion
+
+
+# Passo 3 - Habilitar bash_completion no kubectl:
+
+kubectl completion bash >>  ~/.bash_completion
+. /etc/profile.d/bash_completion.sh
+. ~/.bash_completion
+
+
+# Passo 4 - Instalar o eksctl na instância Cloud9:
+
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv -v /tmp/eksctl /usr/local/bin
+
+
+# Passo 5 - Habilitar bash_completion no eksctl:
+
+eksctl completion bash >> ~/.bash_completion
+. /etc/profile.d/bash_completion.sh
+. ~/.bash_completion
