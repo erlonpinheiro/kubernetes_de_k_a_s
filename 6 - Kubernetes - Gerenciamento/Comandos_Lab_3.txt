@@ -1,0 +1,11 @@
+# Passo 1 - Criar o namespace à partir do arquivo de definição yaml:
+
+kubectl create -f ./Namespaces/sock-shop-ns.yaml
+
+
+# Passo 2 - Inspecionar o namespace criado:
+
+kubectl get ns
+kubectl get namespace
+kubectl describe ns sock-shop
+kubectl -n sock-shop get all

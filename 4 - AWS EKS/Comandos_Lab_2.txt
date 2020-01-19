@@ -1,1 +1,5 @@
 # Passo 1 - Criar o cluster EKS que será utilizado nos próximos labs:
+
+eksctl create cluster -f ./eks_cluster.yaml
+
+# Passo 2 - 
