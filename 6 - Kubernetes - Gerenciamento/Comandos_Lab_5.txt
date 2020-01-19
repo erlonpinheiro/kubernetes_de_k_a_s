@@ -1,0 +1,19 @@
+# Passo 1 - Criar um replicaset com 3 pods com nginx à partir do arquivo de definição yaml:
+
+kubectl -n playground create -f ./ReplicaSets/playground-nginx-rs.yaml
+
+
+# Passo 2 - Inspecionar o replicaset criado:
+
+kubectl -n playground get replicaset
+kubectl -n playground get rs
+kubectl -n playground describe rs nginx-rs
+
+
+# Passo 3 - Remover o replicaset:
+
+kubectl -n playground delete rs nginx-rs
+
+# ou
+
+kubectl -n playground delete -f ./ReplicaSets/playground-nginx-rs.yaml

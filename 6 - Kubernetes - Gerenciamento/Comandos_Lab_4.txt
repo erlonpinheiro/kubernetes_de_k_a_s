@@ -8,3 +8,12 @@ kubectl -n playground create -f ./Pods/playground-nginx-pod.yaml
 kubectl -n playground get pods
 kubectl -n playground get po
 kubectl -n playground describe pod nginx
+
+
+# Passo 3 - Remover o pod:
+
+kubectl -n playground delete pod nginx
+
+# ou
+
+kubectl -n playground delete -f ./Pods/playground-nginx-pod.yaml
