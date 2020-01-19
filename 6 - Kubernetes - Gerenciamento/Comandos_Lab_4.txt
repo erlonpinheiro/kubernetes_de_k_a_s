@@ -1,0 +1,10 @@
+# Passo 1 - Criar um pod com nginx à partir do arquivo de definição yaml:
+
+kubectl -n playground create -f ./Pods/playground-nginx-pod.yaml
+
+
+# Passo 2 - Inspecionar o pod criado:
+
+kubectl -n playground get pods
+kubectl -n playground get po
+kubectl -n playground describe pod nginx
