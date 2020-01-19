@@ -2,4 +2,9 @@
 
 eksctl create cluster -f ./eks_cluster.yaml
 
-# Passo 2 - 
+# Passo 2 - Inspecionar o cluster EKS criado
+
+eksctl get cluster --region=us-east-1
+
+# Inspecionar também no console EKS (AWS)
+# => https://console.aws.amazon.com/eks/home?region=us-east-1#/clusters
