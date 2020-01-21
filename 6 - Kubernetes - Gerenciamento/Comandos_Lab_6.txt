@@ -4,17 +4,19 @@ kubectl -n playground create -f ./Deployments/nginx-dep.yaml
 
 # Passo 2 - Criar no namespace "sock-shop", todos os “deployment” do app “sock-shop” à partir dos arquivos de definição yaml;:
 
-kubectl -n playground create -f ./Deployments/sock-shop
+kubectl create -f ./Deployments/sock-shop
 
 # Passo 3 - Inspecionar os objetos criados:
 
 kubectl -n playground get deployments
 kubectl -n playground get deploy
 kubectl -n playground get rs
+kubectl -n playground get pods
 kubectl -n playground describe deployment nginx-dep
 kubectl -n sock-shop get deployments
 kubectl -n sock-shop get deploy
 kubectl -n sock-shop get rs
+kubectl -n sock-shop get pods
 
 # Passo 4 - Remover o deployment nginx-dep do namespace playground:
 
