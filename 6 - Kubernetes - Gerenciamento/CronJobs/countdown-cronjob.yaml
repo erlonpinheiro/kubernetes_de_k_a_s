@@ -17,5 +17,5 @@ spec:
             command:
              - "bin/bash"
              - "-c"
-             - "for i in `seq 20`; do echo $i ; sleep 1s ; done"
+             - "for i in `seq 20`; do echo $i ; sleep 3s ; done"
           restartPolicy: Never
