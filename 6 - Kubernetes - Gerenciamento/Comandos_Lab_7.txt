@@ -1,0 +1,60 @@
+# Passo 1 - Criar o StatefulSet "cassandra" a partir do arquivo de definição yaml no namespace "playground":
+
+kubectl -n playground apply -f ./StatefulSets/cassandra-statefulset.yaml
+
+# Passo 2 - Inspecionar os recursos criados (inclusive volumes):
+
+kubectl -n playground get statefulset
+kubectl -n playground get pods
+kubectl -n playground describe statefulset cassandra
+kubectl -n playground get pvc
+kubectl -n playground describe pvc cassandra-data-cassandra-0
+
+# Verificar os volumes no console AWS -> https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Volumes:sort=volumeId
+
+# Passo 3 - Remover o StatefulSet:
+
+kubectl -n playground delete -f ./StatefulSets/cassandra-statefulset.yaml
+
+# Passo 4 - Inspecionar os recursos removidos (inclusive volumes):
+
+kubectl -n playground get statefulset
+kubectl -n playground get pods
+kubectl -n playground describe statefulset cassandra
+kubectl -n playground get pvc
+kubectl -n playground describe pvc cassandra-data-cassandra-0
+
+# Passo 5 - Recriar o StatefulSet "cassandra" a partir do arquivo de definição yaml no namespace "playground":
+
+kubectl -n playground apply -f ./StatefulSets/cassandra-statefulset.yaml
+
+# Passo 6 - Inspecionar os recursos criados (inclusive volumes):
+
+kubectl -n playground get statefulset
+kubectl -n playground get pods
+kubectl -n playground describe statefulset cassandra
+kubectl -n playground get pvc
+kubectl -n playground describe pvc cassandra-data-cassandra-0
+
+# Passo 7 - Inspecionar o status do cassandra, adicionar um novo pod e verificar o status do cassandra novamente:
+
+kubectl -n playground exec -it cassandra-0 -- nodetool status
+
+# Edite o arquivo cassandra-statefulset.yaml e modifique a quantidade de replicas de 3 para 4, salve e execute:
+
+kubectl -n playground apply -f ./StatefulSets/cassandra-statefulset.yaml
+
+# Inspecione o status do statefulset com o comando:
+
+kubectl -n playground get statefulset cassandra
+
+# Aguarde alguns segundos e inspecione o status do cluster cassandra com o comando:
+
+kubectl -n playground exec -it cassandra-0 -- nodetool status
+
+# Passo 8 - Remover o StatefulSet e os volumes que sobraram:
+
+kubectl -n playground delete -f ./StatefulSets/cassandra-statefulset.yaml
+kubectl -n playground delete pvc -l app=cassandra
+
+# Inspecione no console AWS os volumes.
