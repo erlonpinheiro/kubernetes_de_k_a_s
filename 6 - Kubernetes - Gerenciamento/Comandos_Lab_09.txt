@@ -10,7 +10,7 @@ kubectl -n playground describe job countdown
 
 # Passo 3 - Visualizar o log do job:
 
-kubectl -n playground logs countdown
+kubectl -n playground logs <pod_criado>
 
 # Passo 4 - Remover o job "countdown" do namespace "playground":
 

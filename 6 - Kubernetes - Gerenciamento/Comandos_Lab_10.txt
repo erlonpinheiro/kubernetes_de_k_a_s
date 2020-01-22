@@ -1,0 +1,17 @@
+# Passo 1 - Criar o cronjob "countdown" a partir do arquivo de definição yaml no namespace "playground":
+
+kubectl -n playground apply -f ./CronJobs/countdown-cronjob.yaml
+
+# Passo 2 - Inspecionar os recursos criados:
+
+kubectl -n playground get cronjobs
+kubectl -n playground get pods
+kubectl -n playground describe cronjob countdown
+
+# Passo 3 - Visualizar o log do cronjob:
+
+kubectl -n playground logs <pod_criado>
+
+# Passo 4 - Remover o cronjob "countdown" do namespace "playground":
+
+kubectl -n playground delete -f ./CronJobs/countdown-cronjob.yaml
