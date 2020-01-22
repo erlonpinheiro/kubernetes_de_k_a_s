@@ -1,0 +1,15 @@
+# Passo 1 - Criar o daemonset "fluentd-elasticsearch" a partir do arquivo de definição yaml no namespace "playground":
+
+kubectl -n playground apply -f ./Daemonsets/fluentd-elasticsearch-ds.yaml
+
+# Passo 2 - Inspecionar os recursos criados:
+
+kubectl -n playground get daemonsets
+kubectl -n playground get ds
+kubectl get nodes
+kubectl -n playground get pods
+kubectl -n playground describe daemonsets fluentd-elasticsearch
+
+# Passo 3 - Remover o daemonset "fluentd-elasticsearch" do namespace "playground":
+
+kubectl -n playground delete -f ./Daemonsets/fluentd-elasticsearch-ds.yaml
