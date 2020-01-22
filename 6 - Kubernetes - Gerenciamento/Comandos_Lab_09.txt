@@ -1,0 +1,17 @@
+# Passo 1 - Criar o job "countdown" a partir do arquivo de definição yaml no namespace "playground":
+
+kubectl -n playground apply -f ./Jobs/countdown-job.yaml
+
+# Passo 2 - Inspecionar os recursos criados:
+
+kubectl -n playground get jobs
+kubectl -n playground get pods
+kubectl -n playground describe job countdown
+
+# Passo 3 - Visualizar o log do job:
+
+kubectl -n playground logs countdown
+
+# Passo 4 - Remover o job "countdown" do namespace "playground":
+
+kubectl -n playground delete -f ./Jobs/countdown-job.yaml
