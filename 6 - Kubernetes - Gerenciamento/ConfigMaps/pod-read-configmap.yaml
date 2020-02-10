@@ -7,7 +7,7 @@ spec:
   containers:
     - name: cardapio-container
       image: k8s.gcr.io/busybox
-      command: [ "/bin/sh", "-c", 'while [ "${loop_controle}" = "1" ] ; do echo "A melhor comida é ${melhorcomida}, mas infelizmente só estou podendo comer ${comidapermitida}...." ; done' ]
+      command: [ "/bin/sh", "-c", 'while [ "${loop_controle}" = "y" ] ; do echo "A melhor comida é ${melhorcomida}, mas infelizmente só estou podendo comer ${comidapermitida}...." ; done' ]
       envFrom:
       - configMapRef:
           name: cardapio-config
