@@ -6,3 +6,4 @@ metadata:
 data:
     melhorcomida: panelada
     comidapermitida: alface
+    loop_controle: 1
