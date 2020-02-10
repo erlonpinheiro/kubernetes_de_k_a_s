@@ -4,6 +4,6 @@ metadata:
   name: cardapio-config
   namespace: playground
 data:
-    melhorcomida: panelada
-    comidapermitida: alface
-    loopcontrole: y
+    melhorcomida: "panelada"
+    comidapermitida: "alface"
+    loopcontrole: "y"
