@@ -21,3 +21,15 @@ kubectl -n playground get configmap cardapio-config -o yaml
 # Passo 4 - Execute um pod acessando o conteúdo do configmap cardapio-config:
 
 kubectl -n playground apply -f ConfigMaps/pod-read-configmap.yaml
+
+# Passo 5 - Verifique o log do pod em execução:
+
+kubectl -n playground logs -f cardapio
+
+# Passo 6 - Remova o pod utilizado para os testes:
+
+kubectl -n playground delete pod cardapio
+
+# Passo 7 - Remova o configmap utilizado para os testes:
+
+kubectl -n playground delete -f ./ConfigMaps/cardapio-configmap.yaml
