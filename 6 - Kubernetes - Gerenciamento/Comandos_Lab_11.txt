@@ -2,7 +2,7 @@
 
 kubectl create -f ./Services/sock-shop
 
-# Passo 3 - Inspecionar os objetos criados:
+# Passo 2 - Inspecionar os objetos criados:
 
 kubectl -n sock-shop get services
 

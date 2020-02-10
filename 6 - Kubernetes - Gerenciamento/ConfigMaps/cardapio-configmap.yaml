@@ -4,6 +4,5 @@ metadata:
   name: cardapio-config
   namespace: playground
 data:
-  cardapio.properties: |
     melhorcomida=panelada
     comidapermitida=alface

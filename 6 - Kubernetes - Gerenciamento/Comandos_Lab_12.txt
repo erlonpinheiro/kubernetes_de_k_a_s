@@ -1,0 +1,21 @@
+# Passo 1 - Criar no namespace "playground", o configmap “cardapio-config” à partir dos arquivo de definição yaml :
+
+kubectl -n playground apply -f ./ConfigMaps/cardapio-configmap.yaml
+
+# Passo 2 - Inspecionar o configmap criado:
+
+kubectl -n playground get configmaps
+
+# ou
+
+kubectl -n playground get cm
+
+# Passo 3 - Inspecionar o conteúdo do configmap criado:
+
+kubectl -n playground describe configmap cardapio-config
+
+# ou
+
+kubectl -n playground get configmap cardapio-config -o yaml
+
+# Passo 4 - Execute um pod acessando o conteúdo do configmap cardapio-config:
