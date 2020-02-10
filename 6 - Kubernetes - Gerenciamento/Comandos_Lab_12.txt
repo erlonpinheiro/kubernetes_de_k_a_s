@@ -19,3 +19,5 @@ kubectl -n playground describe configmap cardapio-config
 kubectl -n playground get configmap cardapio-config -o yaml
 
 # Passo 4 - Execute um pod acessando o conteúdo do configmap cardapio-config:
+
+kubectl -n playground apply -f ConfigMaps/pod-read-configmap.yaml

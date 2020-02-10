@@ -1,11 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
- name: cardapio
- namespace: playground
+  name: cardapio
+  namespace: playground
 spec:
- containers:
-   - name: nginx-server
-     image: nginx:latest
-     ports:
-       - containerPort: 80
+  containers:
+    - name: cardapio-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      envFrom:
+      - configMapRef:
+          name: cardapio-config
+  restartPolicy: Never
