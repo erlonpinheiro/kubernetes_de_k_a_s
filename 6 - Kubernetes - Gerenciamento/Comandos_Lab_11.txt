@@ -1,0 +1,11 @@
+# Passo 1 - Criar no namespace "sock-shop", todos os “services” do app “sock-shop” à partir dos arquivos de definição yaml;:
+
+kubectl create -f ./Services/sock-shop
+
+# Passo 3 - Inspecionar os objetos criados:
+
+kubectl -n sock-shop get services
+
+# ou
+
+kubectl -n sock-shop get svc
