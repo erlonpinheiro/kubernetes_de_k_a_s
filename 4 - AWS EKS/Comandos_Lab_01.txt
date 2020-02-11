@@ -12,7 +12,6 @@ sudo yum -y install jq gettext bash-completion
 # Passo 3 - Habilitar bash_completion no kubectl:
 
 kubectl completion bash >>  ~/.bash_completion
-. /etc/profile.d/bash_completion.sh
 . ~/.bash_completion
 
 
@@ -25,5 +24,9 @@ sudo mv -v /tmp/eksctl /usr/local/bin
 # Passo 5 - Habilitar bash_completion no eksctl:
 
 eksctl completion bash >> ~/.bash_completion
-. /etc/profile.d/bash_completion.sh
 . ~/.bash_completion
+
+Passo 6 - Download dos arquivos fontes:
+
+cd ~/environment
+git clone https://github.com/erlonpinheiro/kubernetes_de_k_a_s.git
