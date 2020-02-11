@@ -1,5 +1,4 @@
 # eks_cluster.yaml
-# Um cluster com um managed nodegroup
 ---
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
