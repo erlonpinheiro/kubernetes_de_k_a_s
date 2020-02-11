@@ -1,26 +1,35 @@
-# Passo 1 - Instalar o metric server a partir dos arquivo de definição yaml:
+# Passo 1 - Crie o policy necessário para o cluster auto scale e atribua ao IAM role utilizado pelos Worker Nodes :
 
-kubectl apply -f ./1-Metrics_Server
+export AWS_DEFAULT_REGION=us-east-1
+STACK_NAME=$(eksctl get nodegroup --cluster k8s-de-k-a-s -o json | jq -r '.[].StackName')
+ROLE_NAME=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME | jq -r '.StackResources[] | select(.ResourceType=="AWS::IAM::Role") | .PhysicalResourceId')
+aws iam put-role-policy --role-name $ROLE_NAME --policy-name ASG-Policy-For-Worker --policy-document file://~/environment/kubernetes_de_k_a_s/7\ -\ Kubernetes\ -\ Escalabilidade/4-Cluster_Autoscaler/k8s-asg-policy.json
 
-# Passo 2 - Criar o HPA "front-end-hpa" a partir do arquivo de definição yaml:
+# Passo 2 - Instale o cluster autoscaler a partir do arquivo de definição yaml:
 
-kubectl apply -f ./2-HPA-Horizontal_Pod_Autoscaler/front-end-hpa.yaml
+kubectl apply -f cluster-autoscaler.yaml
 
-# Passo 3 - Executar o teste de carga a partir do arquivo de definição yaml:
+# Passo 3 - Crie um deployment com nginx a partir do arquivo de definição yaml:
 
-kubectl apply -f ./3-Load_Test/loadtest-dep.yaml
+kubectl apply -f nginx.yaml
 
-# Passo 4 - Monitorar o comportamento do HPA:
+# Passo 4 - Verifique os pods criados:
 
-kubectl -n sock-shop get hpa front-end-hpa -w
+kubectl -n playground get pods
 
-# Passo 5 - Modificar os parâmetros do teste de carga e acompanhar o comportamento do deployment "front-end":
+# Passo 5 - Aumente o número de replicas do nginx para 20:
 
-vim ./3-Load_Test/loadtest-dep.yaml
-kubectl apply -f ./3-Load_Test/loadtest-dep.yaml
-kubectl -n sock-shop get hpa front-end-hpa -w
+kubectl -n playground  scale --replicas=20 deployment/nginx-to-scaleout
 
-# Passo 6 - Diminuir o volume no teste de carga:
+# Passo 6 - Monitore o comportamento do cluster autoscaler verificando os pods e nós:
 
-vim ./3-Load_Test/loadtest-dep.yaml
-kubectl apply -f ./3-Load_Test/loadtest-dep.yaml
+kubectl get nodes -w
+kubectl -n playground get pods -w
+
+# Passo 7 - Verifique o log do cluster autoscaler:
+
+kubectl -n kube-system logs -f cluster-autoscaler-????????
+
+# Passo 8 - Remova o deployment utilizado nos testes:
+
+kubectl -n playground delete deploy nginx-to-scaleout
