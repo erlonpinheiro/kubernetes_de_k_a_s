@@ -1,0 +1,31 @@
+# Passo 1 - Criar no namespace "playground", o secret “authcredential” à partir dos arquivo de definição yaml :
+
+kubectl -n playground apply -f ./Secrets/credenciais-secret.yaml
+
+# Passo 2 - Inspecionar o secret criado:
+
+kubectl -n playground get secrets
+
+# Passo 3 - Inspecionar o conteúdo do secret criado:
+
+kubectl -n playground describe secret authcredential
+
+# ou
+
+kubectl -n playground get secret authcredential -o yaml
+
+# Passo 4 - Execute um pod acessando o conteúdo do secret authcredential:
+
+kubectl -n playground apply -f Secrets/pod-read-secret.yaml
+
+# Passo 5 - Verifique o log do pod em execução:
+
+kubectl -n playground logs -f checa-credencial
+
+# Passo 6 - Remova o pod utilizado para os testes:
+
+kubectl -n playground delete pod checa-credencial
+
+# Passo 7 - Remova o secret utilizado para os testes:
+
+kubectl -n playground delete -f ./Secrets/credenciais-secret.yaml
