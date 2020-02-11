@@ -1,0 +1,26 @@
+# Passo 1 - Instalar o metric server a partir dos arquivo de definição yaml:
+
+kubectl apply -f ./1-Metrics_Server
+
+# Passo 2 - Criar o HPA "front-end-hpa" a partir do arquivo de definição yaml:
+
+kubectl apply -f ./2-HPA-Horizontal_Pod_Autoscaler/front-end-hpa.yaml
+
+# Passo 3 - Executar o teste de carga a partir do arquivo de definição yaml:
+
+kubectl apply -f ./3-Load_Test/loadtest-dep.yaml
+
+# Passo 4 - Monitorar o comportamento do HPA:
+
+kubectl -n sock-shop get hpa front-end-hpa -w
+
+# Passo 5 - Modificar os parâmetros do teste de carga e acompanhar o comportamento do deployment "front-end":
+
+vim ./3-Load_Test/loadtest-dep.yaml
+kubectl apply -f ./3-Load_Test/loadtest-dep.yaml
+kubectl -n sock-shop get hpa front-end-hpa -w
+
+# Passo 6 - Diminuir o volume no teste de carga:
+
+vim ./3-Load_Test/loadtest-dep.yaml
+kubectl apply -f ./3-Load_Test/loadtest-dep.yaml
