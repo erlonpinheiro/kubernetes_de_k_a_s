@@ -12,7 +12,7 @@ managedNodeGroups:
     instanceType: t2.medium
     minSize: 2
     maxSize: 10
-    desiredCapacity: 4
+    desiredCapacity: 5
     volumeSize: 20
     labels: {role: worker}
     tags:
