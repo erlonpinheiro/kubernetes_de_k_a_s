@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: front-end
+  name: front-end-hpa
   namespace: sock-shop
 spec:
   maxReplicas: 20
