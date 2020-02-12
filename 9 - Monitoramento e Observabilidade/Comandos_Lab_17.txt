@@ -1,21 +1,17 @@
-# Passo 1 - Criar o namespace "monitoring" fazendo uso do arquivo de definição yaml:
+# Passo 1 - Instalar o Elasticsearch fazendo uso do arquivo de definição yaml:
 
-kubectl apply -f ./1-Namespace
+kubectl apply -f ./5-Elasticsearch
 
-# Passo 2 - Instalar o Prometheus fazendo uso do arquivo de definição yaml:
+# Passo 2 - Instalar o kibana fazendo uso do arquivo de definição yaml:
 
-kubectl apply -f ./2-Prometheus
+kubectl apply -f ./6-Kibana
 
-# Passo 3 - Instalar o Grafana fazendo uso do arquivo de definição yaml:
+# Passo 3 - Instalar o fluentd fazendo uso do arquivo de definição yaml:
 
-kubectl apply -f ./3-Grafana
+kubectl apply -f ./7-Fluentd
 
-# Passo 4 - Criar os dashboards no Grafana a partir do arquivo yaml:
+# Passo 4 - Acessar o dashboard Kibana a partir do endpoint alocado pelo serviço:
 
-kubectl apply -f ./3-Grafana_Dashboards
+kubectl -n kube-system get svc kibana
 
-# Passo 5 - Acessar o dashboard Grafana a partir do endpoint alocado pelo serviço:
-
-kubectl -n monitoring get svc grafana
-
-# Acesse via browser através da URL listada em EXTERNAL-IP  (usuário: admin / password: admin)
+# Acesse via browser através da URL listada em EXTERNAL-IP
