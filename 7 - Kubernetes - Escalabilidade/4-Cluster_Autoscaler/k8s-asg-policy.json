@@ -6,10 +6,11 @@
       "Action": [
         "autoscaling:DescribeAutoScalingGroups",
         "autoscaling:DescribeAutoScalingInstances",
-        "autoscaling:SetDesiredCapacity",
         "autoscaling:DescribeLaunchConfigurations",
+        "autoscaling:DescribeTags",
+        "autoscaling:SetDesiredCapacity",
         "autoscaling:TerminateInstanceInAutoScalingGroup",
-        "autoscaling:DescribeTags"
+        "ec2:DescribeLaunchTemplateVersions"
       ],
       "Resource": "*"
     }

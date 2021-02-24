@@ -2,7 +2,7 @@
 
 export AWS_DEFAULT_REGION=us-east-1
 STACK_NAME=$(eksctl get nodegroup --cluster k8s-de-k-a-s -o json | jq -r '.[].StackName')
-ROLE_NAME=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME | jq -r '.StackResources[] | select(.ResourceType=="AWS::IAM::Role") | .PhysicalResourceId')
+ROLE_NAME=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME --output json | jq -r '.StackResources[] | select(.ResourceType=="AWS::IAM::Role") | .PhysicalResourceId')
 aws iam put-role-policy --role-name $ROLE_NAME --policy-name ASG-Policy-For-Worker --policy-document file://~/environment/kubernetes_de_k_a_s/7\ -\ Kubernetes\ -\ Escalabilidade/4-Cluster_Autoscaler/k8s-asg-policy.json
 
 # Passo 2 - Instale o cluster autoscaler a partir do arquivo de definição yaml:
