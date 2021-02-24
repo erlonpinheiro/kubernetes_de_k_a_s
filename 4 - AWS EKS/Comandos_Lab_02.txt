@@ -2,6 +2,9 @@
 
 eksctl create cluster -f ./eks_cluster.yaml
 
+#Atualizar o Cluster
+eksctl update cluster -f ./eks_cluster.yaml --approve
+
 # Passo 2 - Inspecionar o cluster EKS criado
 
 eksctl get cluster --region=us-east-1
